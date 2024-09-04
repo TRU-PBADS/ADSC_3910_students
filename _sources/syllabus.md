@@ -62,9 +62,9 @@ Office hour: Thu 11:30 AM-12:30 PM at OM 1232. Please book your timeslot [here](
 |-------------------------|--------|
 | Teamwork contract       |     5% |
 | Milestone 1: Proposal   |    15% |
-| Peer review proposal    |     5% |
+| Peer review proposal    (completed individually)|     5% |
 | Milestone 2: Draft repo |    20% |
-| Peer review github repo |     5% |
+| Peer review github repo (completed individually)|     5% |
 | Final report (completed individually)            |    25% |
 | Final data product      |    20% |
 | Teamwork reflection     |     5% |
