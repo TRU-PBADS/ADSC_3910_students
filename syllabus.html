@@ -1,0 +1,725 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>ADSC 3910 - Applied Data Science Integrated Practice 2 &#8212; ADSC 3910 - Applied Data Science Integrated Practice 2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'syllabus';</script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Teamwork contract" href="teamwork.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="#">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/TRU_Logo.png" class="logo__image only-light" alt="ADSC 3910 - Applied Data Science Integrated Practice 2 - Home"/>
+    <script>document.write(`<img src="_static/TRU_Logo.png" class="logo__image only-dark" alt="ADSC 3910 - Applied Data Science Integrated Practice 2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1 current active">
+                <a class="reference internal" href="#">
+                    ADSC 3910 - Applied Data Science Integrated Practice 2
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Teamwork documents</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="teamwork.html">Teamwork contract</a></li>
+
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teamwork reflection (to be used at the end of the semester)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="team_reflection.html">Teamwork Reflection</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/syllabus.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>ADSC 3910 - Applied Data Science Integrated Practice 2</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule-office-hours">Schedule &amp; office hours</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communication">Communication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectures">Lectures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessment-overview">Assessment overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attendance-late-assignments-academic-concessions-academic-accomodation">Attendance, late assignments, academic concessions, academic accomodation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attendance">Attendance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-concessions">Academic concessions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#late-assignments">Late Assignments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessbility">Accessbility</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="adsc-3910-applied-data-science-integrated-practice-2">
+<h1>ADSC 3910 - Applied Data Science Integrated Practice 2<a class="headerlink" href="#adsc-3910-applied-data-science-integrated-practice-2" title="Link to this heading">#</a></h1>
+<p>This course will provide the opportunity for students to apply and practice their data science skills by developing an end-to-end data science project. The course follows a project format, which consists of multiple milestones to help guide students in creating their data science pipeline. We will focus on the application of non-relational database with MongoDB and using PySpark for data analysis at scale.</p>
+<section id="learning-objectives">
+<h2>Learning objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<p>By the end of this course, students are expected be able to:</p>
+<ul class="simple">
+<li><p>Identify an interesting data science question for which data are available or obtainable.</p></li>
+<li><p>Define the scope of a possible solution, create a proposal and a timeline with key milestones.</p></li>
+<li><p>Create a fully reproducible data science pipeline, packaged in a Github repository.</p></li>
+<li><p>Utilize MongoDB as a database system.</p></li>
+<li><p>Utilize PySpark in processing and analyzing the data.</p></li>
+<li><p>Work collaboratively as a team to create, document, and present (using written, oral, and visual means) the process and results from a solution to a data science problem.</p></li>
+</ul>
+</section>
+<section id="schedule-office-hours">
+<h2>Schedule &amp; office hours<a class="headerlink" href="#schedule-office-hours" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Monday 10:30 - 11:20 AM</p></li>
+<li><p>Wednesday 9:30 - 11:20 AM</p></li>
+</ul>
+<p>Location: computer lab OM 1241 at Old Main building.</p>
+<p>Office hour: Thu 11:30 AM-12:30 PM at OM 1232. Please book your timeslot <a class="reference external" href="https://calendly.com/quan3010/office-hour-with-quan">here</a></p>
+</section>
+<section id="communication">
+<h2>Communication<a class="headerlink" href="#communication" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>For any <strong>course-related questions</strong>, such as lectures, assignments, exames, course logistics, please ask them under the discussion forum in Moodle.</p></li>
+<li><p>For any <strong>individual-related questions</strong>, such as academic concession, deadline extension, personal circumstances, etc., please email me at lnguyen[at]tru[dot]ca</p></li>
+<li><p><strong>Response time</strong>: I will try our best to reply to your inquiries as soon as possible during the normal working hours (9AM-5PM Mon-Fri). If you send me a message outside of regular working hours, please expect a response on the next working day.</p></li>
+</ul>
+</section>
+<section id="lectures">
+<h2>Lectures<a class="headerlink" href="#lectures" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Week no.</p></th>
+<th class="head"><p>Week day</p></th>
+<th class="head"><p>Date</p></th>
+<th class="head"><p>Topic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Mon</p></td>
+<td><p>Sep 2</p></td>
+<td><p>BREAK: Labour day</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Wed</p></td>
+<td><p>Sep 4</p></td>
+<td><p>Teamwork contract &amp; set up github repo</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Mon</p></td>
+<td><p>Sep 9</p></td>
+<td><p>Lecture: Intro to reproducibility in data science</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Wed</p></td>
+<td><p>Sep 11</p></td>
+<td><p>Create env file, create mongoDB database</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Mon</p></td>
+<td><p>Sep 16</p></td>
+<td><p>Lecture: Structure a data science workflow</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Wed</p></td>
+<td><p>Sep 18</p></td>
+<td><p>Create a data analysis workflow</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Mon</p></td>
+<td><p>Sep 23</p></td>
+<td><p>Lecture: How to write a data science proposal</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>Wed</p></td>
+<td><p>Sep 25</p></td>
+<td><p>Milestone 1: Write your proposal</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>Mon</p></td>
+<td><p>Sep 30</p></td>
+<td><p>BREAK: Truth and conciliation</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>Wed</p></td>
+<td><p>Oct 2</p></td>
+<td><p>Peer review proposals</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Mon</p></td>
+<td><p>Oct 7</p></td>
+<td><p>Lecture: Project management in data science</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>Wed</p></td>
+<td><p>Oct 9</p></td>
+<td><p>Teamwork time &amp; checkin with Quan</p></td>
+</tr>
+<tr class="row-even"><td><p>7</p></td>
+<td><p>Mon</p></td>
+<td><p>Oct 14</p></td>
+<td><p>BREAK: Thanksgiving</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>Wed</p></td>
+<td><p>Oct 16</p></td>
+<td><p>Teamwork time</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>Mon</p></td>
+<td><p>Oct 21</p></td>
+<td><p>Lecture: From notebooks to scripts</p></td>
+</tr>
+<tr class="row-odd"><td><p>8</p></td>
+<td><p>Wed</p></td>
+<td><p>Oct 23</p></td>
+<td><p>Teamwork time</p></td>
+</tr>
+<tr class="row-even"><td><p>9</p></td>
+<td><p>Mon</p></td>
+<td><p>Oct 28</p></td>
+<td><p>Lecture placeholder</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>Wed</p></td>
+<td><p>Oct 30</p></td>
+<td><p>Milestone 2: A draft repo</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>Mon</p></td>
+<td><p>Nov 4</p></td>
+<td><p>Lecture placeholder</p></td>
+</tr>
+<tr class="row-odd"><td><p>10</p></td>
+<td><p>Wed</p></td>
+<td><p>Nov 6</p></td>
+<td><p>Peer review github repo</p></td>
+</tr>
+<tr class="row-even"><td><p>11</p></td>
+<td><p>Mon</p></td>
+<td><p>Nov 11</p></td>
+<td><p>BREAK: Rememberance day</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>Wed</p></td>
+<td><p>Nov 13</p></td>
+<td><p>Lecture: How to deliver a technical presentation</p></td>
+</tr>
+<tr class="row-even"><td><p>12</p></td>
+<td><p>Mon</p></td>
+<td><p>Nov 18</p></td>
+<td><p>Final presentation</p></td>
+</tr>
+<tr class="row-odd"><td><p>12</p></td>
+<td><p>Wed</p></td>
+<td><p>Nov 20</p></td>
+<td><p>Final presentation</p></td>
+</tr>
+<tr class="row-even"><td><p>13</p></td>
+<td><p>Mon</p></td>
+<td><p>Nov 25</p></td>
+<td><p>Teamwork time on final report</p></td>
+</tr>
+<tr class="row-odd"><td><p>13</p></td>
+<td><p>Wed</p></td>
+<td><p>Nov 27</p></td>
+<td><p>Final submission</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="assessment-overview">
+<h2>Assessment overview<a class="headerlink" href="#assessment-overview" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Assessment component</p></th>
+<th class="head"><p>Weight</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Teamwork contract</p></td>
+<td><p>5%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Milestone 1: Proposal</p></td>
+<td><p>15%</p></td>
+</tr>
+<tr class="row-even"><td><p>Peer review proposal</p></td>
+<td><p>5%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Milestone 2: Draft repo</p></td>
+<td><p>20%</p></td>
+</tr>
+<tr class="row-even"><td><p>Peer review github repo</p></td>
+<td><p>5%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Final report</p></td>
+<td><p>25%</p></td>
+</tr>
+<tr class="row-even"><td><p>Final data product</p></td>
+<td><p>20%</p></td>
+</tr>
+<tr class="row-odd"><td><p>Teamwork reflection</p></td>
+<td><p>5%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="attendance-late-assignments-academic-concessions-academic-accomodation">
+<h2>Attendance, late assignments, academic concessions, academic accomodation<a class="headerlink" href="#attendance-late-assignments-academic-concessions-academic-accomodation" title="Link to this heading">#</a></h2>
+<section id="attendance">
+<h3>Attendance<a class="headerlink" href="#attendance" title="Link to this heading">#</a></h3>
+<p>Please refer to <a class="reference external" href="https://www.tru.ca/__shared/assets/Policy_ED_03-135351.pdf">TRU’s attendance policy</a>. In addition, we will take attendance during class via Moodle’s QR code</p>
+</section>
+<section id="academic-concessions">
+<h3>Academic concessions<a class="headerlink" href="#academic-concessions" title="Link to this heading">#</a></h3>
+<p>If you encounter situations that may impede your ability to meet course requirements—such as illness, family emergencies, or other significant life events—please notify the instructor <strong>at least 24 hours before deadline</strong>. Academic concessions, including extensions or alternative assessments, will be considered on a case-by-case basis. You may be required to provide documentation to support your request. Concession requests after the deadline has passed will likely be refused.</p>
+</section>
+<section id="late-assignments">
+<h3>Late Assignments<a class="headerlink" href="#late-assignments" title="Link to this heading">#</a></h3>
+<p>Assignments are expected to be submitted on time. Late submissions will incur a penalty of 25% per day, up to a maximum of 75%. After 3 days, late assignments will no longer be accepted and will receive a grade of zero. Extensions may be granted in exceptional circumstances, provided that you contact the instructor before the deadline.</p>
+</section>
+<section id="accessbility">
+<h3>Accessbility<a class="headerlink" href="#accessbility" title="Link to this heading">#</a></h3>
+<p>Students registered with the Accessibility Services who require accommodations must provide their Letter of Accommodation to the instructor as soon as possible. This letter will outline the necessary accommodations to ensure an equitable learning environment. Please ensure that this is done early in the term to facilitate timely arrangements.</p>
+</section>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="right-next"
+       href="teamwork.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Teamwork contract</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule-office-hours">Schedule &amp; office hours</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#communication">Communication</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lectures">Lectures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#assessment-overview">Assessment overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attendance-late-assignments-academic-concessions-academic-accomodation">Attendance, late assignments, academic concessions, academic accomodation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#attendance">Attendance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#academic-concessions">Academic concessions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#late-assignments">Late Assignments</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#accessbility">Accessbility</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quan Nguyen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
