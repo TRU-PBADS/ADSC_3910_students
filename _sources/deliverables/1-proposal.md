@@ -25,11 +25,7 @@ Please refer to the [submission instructions on Moodle](https://moodle.tru.ca/co
 
 Your proposal should contain the following sections, and should be reported in this order.
 
-### 3.1. Executive Summary
-
-A brief and high level summary of the project proposal.
-
-### 3.2. Introduction
+### 3.1. Introduction
 
 The introduction should start broad, introducing the question being asked/problem needing solving and why it is important. Any relevant information to understand the question/problem and its importance should be included. The proposal should communicate the question/problem  _in your own words_. This is important to show your professor and classmates that you understand the question/problem.
 
@@ -42,7 +38,7 @@ Finally, describe the final data product to be delivered to the partner. Example
 - A dashboard
 - Etc.
 
-### 3.3. Data Science Techniques
+### 3.2. Data Science Techniques
 
 Describe how you will use data science techniques in the project. Be sure to discuss the appropriateness of the data for the proposed data science techniques, as well as difficulties the data might pose. You should include a description of the data (variables/features and observational units) and some examples/snippets of what the data looks like (as a table or a visualization).
 
@@ -52,11 +48,11 @@ Explain how your project utilizes the concepts, or tools of other ADSC courses i
 
 Include clear success criteria for the project. This includes which evaluation metrics you are going to use and why.
 
-### 3.4. Timeline
+### 3.3. Timeline
 
 Indicate a rough timeline of the project, including the milestones you hope to achieve.
 
-### 3.5 References
+### 3.4 References
 
 A list of references with a citation style of your choice.
 
