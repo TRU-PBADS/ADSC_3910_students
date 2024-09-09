@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Deliverable 1: Proposal Report &#8212; ADSC 3910 - Applied Data Science Integrated Practice 2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'deliverables/1-proposal';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Sample project" href="../sample_project.html" />
+    <link rel="prev" title="Project requirements" href="0-project-requirements.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../syllabus.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/TRU_Logo.png" class="logo__image only-light" alt="ADSC 3910 - Applied Data Science Integrated Practice 2 - Home"/>
+    <script>document.write(`<img src="../_static/TRU_Logo.png" class="logo__image only-dark" alt="ADSC 3910 - Applied Data Science Integrated Practice 2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../syllabus.html">
+                    ADSC 3910 - Applied Data Science Integrated Practice 2
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures Notes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../lectures/lecture1.html">Version control with GitHub</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deliverables</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="0-project-requirements.html">Project requirements</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Deliverable 1: Proposal Report</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sample project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sample_project.html">Sample project</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/deliverables/1-proposal.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Deliverable 1: Proposal Report</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverable-description">1. Deliverable Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">2. Submission Instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proposal-components">3. Proposal Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executive-summary">3.1. Executive Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">3.2. Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-science-techniques">3.3. Data Science Techniques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timeline">3.4. Timeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">3.5 References</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">4. Grading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peer-review-activity">4.1 Peer-review activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proposal-report">4.2. Proposal Report</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-reproducible-tool">4.2.1 Using a Reproducible Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="deliverable-1-proposal-report">
+<h1>Deliverable 1: Proposal Report<a class="headerlink" href="#deliverable-1-proposal-report" title="Link to this heading">#</a></h1>
+<section id="deliverable-description">
+<h2>1. Deliverable Description<a class="headerlink" href="#deliverable-description" title="Link to this heading">#</a></h2>
+<p>The proposal process is intended to set goals and directions for your group project. There are three deliverables associated with the proposal:</p>
+<ol class="arabic simple">
+<li><p>The proposal draft (completed as a group)</p></li>
+<li><p>Peer reviews other proposals (completed as individual)</p></li>
+<li><p>The revised proposal (completed as a group)</p></li>
+</ol>
+<p>Here are the general tasks involved in the proposal process:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Task Description</p></th>
+<th class="head"><p>Date</p></th>
+<th class="head"><p>Weight</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>Submit a draft proposal</p></td>
+<td><p>Saturday, 28 September 2024, 11:59 PM</p></td>
+<td><p>5%</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>Review other proposals</p></td>
+<td><p>Tuesday, 1 October 2024, 11:59 PM</p></td>
+<td><p>5%</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>Submit the revised proposal</p></td>
+<td><p>Sunday, 6 October 2024, 11:59 PM</p></td>
+<td><p>10%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="submission-instructions">
+<h2>2. Submission Instructions<a class="headerlink" href="#submission-instructions" title="Link to this heading">#</a></h2>
+<p>Please refer to the <a class="reference external" href="https://moodle.tru.ca/course/view.php?id=55823#section-2">submission instructions on Moodle</a>.</p>
+</section>
+<section id="proposal-components">
+<h2>3. Proposal Components<a class="headerlink" href="#proposal-components" title="Link to this heading">#</a></h2>
+<p>Your proposal should contain the following sections, and should be reported in this order.</p>
+<section id="executive-summary">
+<h3>3.1. Executive Summary<a class="headerlink" href="#executive-summary" title="Link to this heading">#</a></h3>
+<p>A brief and high level summary of the project proposal.</p>
+</section>
+<section id="introduction">
+<h3>3.2. Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h3>
+<p>The introduction should start broad, introducing the question being asked/problem needing solving and why it is important. Any relevant information to understand the question/problem and its importance should be included. The proposal should communicate the question/problem  <em>in your own words</em>. This is important to show your professor and classmates that you understand the question/problem.</p>
+<p>Next, you should <em>refine</em> the big-picture problem into tangible objectives that are directly addressable by data science techniques.</p>
+<p>Finally, describe the final data product to be delivered to the partner. Example components of this product might include (but are not limited to) one or more of the following:</p>
+<ul class="simple">
+<li><p>A data pipeline;</p></li>
+<li><p>Documentation;</p></li>
+<li><p>A dashboard</p></li>
+<li><p>Etc.</p></li>
+</ul>
+</section>
+<section id="data-science-techniques">
+<h3>3.3. Data Science Techniques<a class="headerlink" href="#data-science-techniques" title="Link to this heading">#</a></h3>
+<p>Describe how you will use data science techniques in the project. Be sure to discuss the appropriateness of the data for the proposed data science techniques, as well as difficulties the data might pose. You should include a description of the data (variables/features and observational units) and some examples/snippets of what the data looks like (as a table or a visualization).</p>
+<p>Be sure to start with <strong>simple</strong> data science techniques to obtain a simple version of your data science product. There are two benefits to this approach. First, the simple method gives you a baseline to which you can compare future results. Second, the simple method may solve the problem, in which case you don’t need something more complicated. For example, if dealing with time series data, your first model might be a naive or ETS, it should not be an LSTM.</p>
+<p>Explain how your project utilizes the concepts, or tools of other ADSC courses in this term.</p>
+<p>Include clear success criteria for the project. This includes which evaluation metrics you are going to use and why.</p>
+</section>
+<section id="timeline">
+<h3>3.4. Timeline<a class="headerlink" href="#timeline" title="Link to this heading">#</a></h3>
+<p>Indicate a rough timeline of the project, including the milestones you hope to achieve.</p>
+</section>
+<section id="references">
+<h3>3.5 References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<p>A list of references with a citation style of your choice.</p>
+</section>
+</section>
+<section id="grading">
+<h2>4. Grading<a class="headerlink" href="#grading" title="Link to this heading">#</a></h2>
+<section id="peer-review-activity">
+<h3>4.1 Peer-review activity<a class="headerlink" href="#peer-review-activity" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Each student will be assigned 2 proposals for peer review. You will write up the feedback, length of 1 page each, for each group proposal under their group’s Github Issues</p></li>
+<li><p>Peer review is worth 5% of your grade.</p></li>
+<li><p>Peer review activity is to be completed individually</p></li>
+</ul>
+<p>Your feedback will be graded based on:</p>
+<ul class="simple">
+<li><p><strong>Preparednesss</strong>: The reviewer shows a deep understanding of the proposal, reads it carefully, and shows critical thinking.</p></li>
+<li><p><strong>Constructiveness</strong>: The suggestions provided are highly constructive, actionable, and framed in a positive manner.</p></li>
+<li><p><strong>Professionalism</strong>: Feedback is professional, respectful, and written in a supportive tone.</p></li>
+</ul>
+</section>
+<section id="proposal-report">
+<h3>4.2. Proposal Report<a class="headerlink" href="#proposal-report" title="Link to this heading">#</a></h3>
+<p>The proposal report should be a maximum of 1200 words (excluding appendices, figure captions, and table captions). The audience of your report is different to your proposal and is composed of:</p>
+<ol class="arabic simple">
+<li><p>Your professor;</p></li>
+<li><p>Your classmates.</p></li>
+</ol>
+<p>From your report, we expect:</p>
+<ul class="simple">
+<li><p>Excellent writing, including:</p>
+<ul>
+<li><p>Low-level (sentence) structure:</p>
+<ul>
+<li><p>Your report is written using complete sentences and proper grammar.</p></li>
+<li><p>Everything is written in your own words and you include citations where appropriate.</p></li>
+<li><p>You mean what you say, and say what you mean.</p></li>
+<li><p>Each sentence is necessary in communicating the message of your report.</p></li>
+<li><p>The language you use must be accessible to all audiences (which is probably non-technical), but detailed enough so that you can get adequate feedback on the path you are choosing to take with the project.</p></li>
+</ul>
+</li>
+<li><p>High-level (paragraph and section) structure:</p>
+<ul>
+<li><p>The organization of your report makes sense.</p></li>
+<li><p>The context is properly set at all times.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>The report should be concise. The content of the proposal itself will be graded under the following guidelines:</p>
+<ul class="simple">
+<li><p>The business needs that you are trying to address are convincing.</p></li>
+<li><p>The proposed products are useful.</p></li>
+<li><p>The proposed data science approach is thoughtful, and <strong>starts simple</strong>.</p></li>
+</ul>
+<section id="using-a-reproducible-tool">
+<h4>4.2.1 Using a Reproducible Tool<a class="headerlink" href="#using-a-reproducible-tool" title="Link to this heading">#</a></h4>
+<p>The proposal should be created using a reproducible tool (e.g., Jupyter notebook, or Markdown). You should avoid including code in the proposal.</p>
+<p>Helpful resource:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://jupyterbook.org/intro.html">Jupyter Book documentation</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./deliverables"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="0-project-requirements.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Project requirements</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../sample_project.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Sample project</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#deliverable-description">1. Deliverable Description</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#submission-instructions">2. Submission Instructions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proposal-components">3. Proposal Components</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#executive-summary">3.1. Executive Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">3.2. Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-science-techniques">3.3. Data Science Techniques</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#timeline">3.4. Timeline</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">3.5 References</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grading">4. Grading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peer-review-activity">4.1 Peer-review activity</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#proposal-report">4.2. Proposal Report</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-reproducible-tool">4.2.1 Using a Reproducible Tool</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quan Nguyen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
