@@ -104,9 +104,9 @@ The report should be concise. The content of the proposal itself will be graded 
 - The proposed data science approach is thoughtful, and **starts simple**.
 
 
-#### 4.2.1 Using a Reproducible Tool
+#### 4.2.1 Using a Reproducible Tool (optional)
 
-The proposal should be created using a reproducible tool (e.g., Jupyter notebook, or Markdown). You should avoid including code in the proposal. 
+You can use Word or Google Docs or Latex to write the proposal. Optionally, you could also use a reproducible tool (e.g., Jupyter notebook, or Markdown). You should **avoid including code** in the proposal. 
 
 Helpful resource:
 - [Jupyter Book documentation](https://jupyterbook.org/intro.html)
