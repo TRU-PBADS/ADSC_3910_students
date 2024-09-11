@@ -68,6 +68,15 @@ Your feedback will be graded based on:
 - **Constructiveness**: The suggestions provided are highly constructive, actionable, and framed in a positive manner.
 - **Professionalism**: Feedback is professional, respectful, and written in a supportive tone.
 
+**SUBMISSION INSTRUCTION**:
+- You will need to submit a Github Issue under the repository of the group that you are reviewing
+1. navigate to the repository of the group that you are reviewing
+2. create a github issue, choose the peer feedback template
+3. fill out the feedback using the issue
+4. submit the issue
+
+![](img/gh_issue.png)
+
 ### 4.2. Proposal Report
 
 The proposal report should be a maximum of 1200 words (excluding appendices, figure captions, and table captions). The audience of your report is different to your proposal and is composed of:
@@ -103,3 +112,7 @@ Helpful resource:
 - [Jupyter Book documentation](https://jupyterbook.org/intro.html)
 
 
+**SUBMISSION INSTRUCTION**
+
+- Upload a `pdf` file to your group github repo
+- Submit an URL to the proposal to Moodle
