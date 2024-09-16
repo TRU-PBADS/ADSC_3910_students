@@ -447,11 +447,16 @@ conda<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"
 <h2>5. Managing Conda Environments<a class="headerlink" href="#managing-conda-environments" title="Link to this heading">#</a></h2>
 <section id="updating-a-conda-environment">
 <h3>Updating a Conda Environment<a class="headerlink" href="#updating-a-conda-environment" title="Link to this heading">#</a></h3>
-<p>To update the packages in your environment:</p>
+<p>You may need to update your environment for a variety of reasons. For example, it may be the case that:</p>
+<ul class="simple">
+<li><p>one of your core dependencies just released a new version (dependency version number update).</p></li>
+<li><p>you need an additional package for data analysis (add a new dependency).</p></li>
+<li><p>you have found a better package and no longer need the older package (add new dependency and remove old dependency).</p></li>
+</ul>
+<p>If any of these occur, all you need to do is update the contents of your <code class="docutils literal notranslate"><span class="pre">environment.yml</span></code> file accordingly and then run the following command:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update all packages in the environment</span>
-<span class="n">conda</span> <span class="n">update</span> <span class="o">--</span><span class="n">name</span> <span class="n">myenv</span> <span class="o">--</span><span class="nb">all</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">update</span> <span class="o">--</span><span class="n">file</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span> <span class="o">--</span><span class="n">prune</span>
 </pre></div>
 </div>
 </div>
