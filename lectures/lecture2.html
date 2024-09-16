@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Setting up reproducible environment &#8212; ADSC 3910 - Applied Data Science Integrated Practice 2</title>
+    <title>2. Setting up reproducible environment &#8212; ADSC 3910 - Applied Data Science Integrated Practice 2</title>
   
   
   
@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Project requirements" href="../deliverables/0-project-requirements.html" />
-    <link rel="prev" title="Version control with GitHub" href="lecture1.html" />
+    <link rel="prev" title="1. Version control with GitHub" href="lecture1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,8 +181,8 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="lecture1.html">Version control with GitHub</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Setting up reproducible environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">1. Version control with GitHub</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">2. Setting up reproducible environment</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Deliverables</span></p>
 <ul class="nav bd-sidenav">
@@ -331,7 +331,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setting up reproducible environment</h1>
+    <h1>2. Setting up reproducible environment</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -341,6 +341,20 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-managing-environment">1. Importance of Managing Environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-issues-without-environment-management">Examples of Issues Without Environment Management</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-conda">2. Introduction to Conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-conda-environment-from-scratch">3. Creating a Conda Environment from Scratch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-conda-environment-from-a-yaml-file">4. Creating a Conda Environment from a YAML File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-conda-environments">5. Managing Conda Environments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-a-conda-environment">Updating a Conda Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deleting-an-installed-package">Deleting an Installed Package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting-the-environment-to-a-yaml-file">Exporting the Environment to a YAML File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deleting-a-conda-environment">Deleting a Conda Environment</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slide">Slide</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supplemental-materials">Supplemental materials</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
@@ -358,13 +372,140 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="setting-up-reproducible-environment">
-<h1>Setting up reproducible environment<a class="headerlink" href="#setting-up-reproducible-environment" title="Link to this heading">#</a></h1>
+<h1>2. Setting up reproducible environment<a class="headerlink" href="#setting-up-reproducible-environment" title="Link to this heading">#</a></h1>
 <p>By the end of this lecture, you should be able to:</p>
 <ul class="simple">
 <li><p>Understand the benefits of using environment management tool such <code class="docutils literal notranslate"><span class="pre">conda</span></code></p></li>
 <li><p>Set up a simple reproducible environment using <code class="docutils literal notranslate"><span class="pre">conda</span></code> and <code class="docutils literal notranslate"><span class="pre">env.yaml</span></code> files</p></li>
 <li><p>Set up a sample project structure using the <a class="reference external" href="https://cookiecutter-data-science.drivendata.org"><code class="docutils literal notranslate"><span class="pre">cookiecutter</span></code> data science template</a></p></li>
 </ul>
+<section id="importance-of-managing-environment">
+<h2>1. Importance of Managing Environment<a class="headerlink" href="#importance-of-managing-environment" title="Link to this heading">#</a></h2>
+<p>Managing environments is crucial in data science for several reasons:</p>
+<ul class="simple">
+<li><p><strong>Dependency Management</strong>: Different projects may require different versions of libraries. Without managing environments, you might face conflicts between these dependencies.</p></li>
+<li><p><strong>Reproducibility</strong>: Ensuring that your code runs the same way on different machines or at different times is essential for reproducibility. An unmanaged environment can lead to inconsistencies.</p></li>
+<li><p><strong>Isolation</strong>: Isolating project environments prevents changes in one project from affecting another.</p></li>
+</ul>
+<section id="examples-of-issues-without-environment-management">
+<h3>Examples of Issues Without Environment Management<a class="headerlink" href="#examples-of-issues-without-environment-management" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Version Conflicts</strong>: Installing a new version of a library for one project might break another project that relies on an older version.</p></li>
+<li><p><strong>Inconsistent Results</strong>: Running the same code on different machines might yield different results due to different library versions.</p></li>
+<li><p><strong>Difficult Collaboration</strong>: Sharing code without a managed environment can lead to “it works on my machine” problems.</p></li>
+</ul>
+</section>
+</section>
+<section id="introduction-to-conda">
+<h2>2. Introduction to Conda<a class="headerlink" href="#introduction-to-conda" title="Link to this heading">#</a></h2>
+<p>Conda is an open-source package management and environment management system. It is useful because:</p>
+<ul class="simple">
+<li><p>It allows you to create isolated environments with specific versions of libraries and dependencies.</p></li>
+<li><p>It supports multiple programming languages, including Python and R.</p></li>
+<li><p>It simplifies the process of installing and managing packages.</p></li>
+</ul>
+</section>
+<section id="creating-a-conda-environment-from-scratch">
+<h2>3. Creating a Conda Environment from Scratch<a class="headerlink" href="#creating-a-conda-environment-from-scratch" title="Link to this heading">#</a></h2>
+<p>To create a new conda environment and install packages, follow these steps:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Create a new environment named &#39;myenv&#39; with Python 3.8</span>
+conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>myenv<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.8
+
+<span class="c1"># Activate the environment</span>
+conda<span class="w"> </span>activate<span class="w"> </span>myenv
+
+<span class="c1"># Install packages, e.g., numpy and pandas</span>
+conda<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> </span>pandas
+</pre></div>
+</div>
+</section>
+<section id="creating-a-conda-environment-from-a-yaml-file">
+<h2>4. Creating a Conda Environment from a YAML File<a class="headerlink" href="#creating-a-conda-environment-from-a-yaml-file" title="Link to this heading">#</a></h2>
+<p>You can create a conda environment from a YAML file, which specifies the environment configuration:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># environment.yml</span>
+<span class="n">name</span><span class="p">:</span> <span class="n">myenv</span>
+<span class="n">dependencies</span><span class="p">:</span>
+  <span class="o">-</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.8</span>
+  <span class="o">-</span> <span class="n">numpy</span>
+  <span class="o">-</span> <span class="n">pandas</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To create the environment from the YAML file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">create</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="managing-conda-environments">
+<h2>5. Managing Conda Environments<a class="headerlink" href="#managing-conda-environments" title="Link to this heading">#</a></h2>
+<section id="updating-a-conda-environment">
+<h3>Updating a Conda Environment<a class="headerlink" href="#updating-a-conda-environment" title="Link to this heading">#</a></h3>
+<p>To update the packages in your environment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Update all packages in the environment</span>
+<span class="n">conda</span> <span class="n">update</span> <span class="o">--</span><span class="n">name</span> <span class="n">myenv</span> <span class="o">--</span><span class="nb">all</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="deleting-an-installed-package">
+<h3>Deleting an Installed Package<a class="headerlink" href="#deleting-an-installed-package" title="Link to this heading">#</a></h3>
+<p>To remove a specific package from the environment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove the &#39;numpy&#39; package from the environment</span>
+<span class="n">conda</span> <span class="n">remove</span> <span class="o">--</span><span class="n">name</span> <span class="n">myenv</span> <span class="n">numpy</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="exporting-the-environment-to-a-yaml-file">
+<h3>Exporting the Environment to a YAML File<a class="headerlink" href="#exporting-the-environment-to-a-yaml-file" title="Link to this heading">#</a></h3>
+<p>To export the current environment configuration to a YAML file:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Export your active environment to &#39;environment.yml&#39;</span>
+<span class="n">conda</span> <span class="n">env</span> <span class="n">export</span> <span class="o">&gt;</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>If you want to make your environment file work across platforms, you can use the conda env export <code class="docutils literal notranslate"><span class="pre">--from-history</span></code> flag. This will only include packages that you’ve explicitly asked for, as opposed to including every package in your environment.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">env</span> <span class="n">export</span> <span class="o">--</span><span class="n">from</span><span class="o">-</span><span class="n">history</span> <span class="o">-</span><span class="n">f</span> <span class="n">environment</span><span class="o">.</span><span class="n">yml</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="deleting-a-conda-environment">
+<h3>Deleting a Conda Environment<a class="headerlink" href="#deleting-a-conda-environment" title="Link to this heading">#</a></h3>
+<p>To delete an entire conda environment:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Remove the &#39;myenv&#39; environment</span>
+<span class="n">conda</span> <span class="n">env</span> <span class="n">remove</span> <span class="o">--</span><span class="n">name</span> <span class="n">myenv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>By managing your environments with conda, you can ensure that your data science projects are reproducible, isolated, and free from dependency conflicts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="slide">
 <h2>Slide<a class="headerlink" href="#slide" title="Link to this heading">#</a></h2>
 <p>No slide this week. We will use demo instead.</p>
@@ -419,7 +560,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Version control with GitHub</p>
+        <p class="prev-next-title">1. Version control with GitHub</p>
       </div>
     </a>
     <a class="right-next"
@@ -447,6 +588,20 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#importance-of-managing-environment">1. Importance of Managing Environment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-of-issues-without-environment-management">Examples of Issues Without Environment Management</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-conda">2. Introduction to Conda</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-conda-environment-from-scratch">3. Creating a Conda Environment from Scratch</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-a-conda-environment-from-a-yaml-file">4. Creating a Conda Environment from a YAML File</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-conda-environments">5. Managing Conda Environments</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-a-conda-environment">Updating a Conda Environment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deleting-an-installed-package">Deleting an Installed Package</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exporting-the-environment-to-a-yaml-file">Exporting the Environment to a YAML File</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deleting-a-conda-environment">Deleting a Conda Environment</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#slide">Slide</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#supplemental-materials">Supplemental materials</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#readings">Readings</a></li>
