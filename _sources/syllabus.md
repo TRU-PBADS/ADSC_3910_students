@@ -39,7 +39,7 @@ Office hour: Thu 11:30 AM-12:30 PM at OM 1232. Please book your timeslot [here](
 |        4 | Wed      | Sep 25 | Milestone 1: Write your proposal                  |
 |        5 | Mon      | Sep 30 | BREAK: Truth and conciliation                     |
 |        5 | Wed      |  Oct 2 | Peer review proposals                             |
-|        6 | Mon      |  Oct 7 | Lecture: Project management in data science       |
+|        6 | Mon      |  Oct 7 | Lecture: Misconceptions in data science           |
 |        6 | Wed      |  Oct 9 | Teamwork time & checkin with Quan                 |
 |        7 | Mon      | Oct 14 | BREAK: Thanksgiving                               |
 |        7 | Wed      | Oct 16 | Teamwork time                                     |
