@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Convert notebooks to scripts &#8212; ADSC 3910 - Applied Data Science Integrated Practice 2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/lecture5';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Project requirements" href="../deliverables/0-project-requirements.html" />
+    <link rel="prev" title="4. Misconceptions in data science" href="lecture4.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../syllabus.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/TRU_Logo.png" class="logo__image only-light" alt="ADSC 3910 - Applied Data Science Integrated Practice 2 - Home"/>
+    <script>document.write(`<img src="../_static/TRU_Logo.png" class="logo__image only-dark" alt="ADSC 3910 - Applied Data Science Integrated Practice 2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../syllabus.html">
+                    ADSC 3910 - Applied Data Science Integrated Practice 2
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">1. Version control with GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2.html">2. Setting up reproducible environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">3. Technical writing for data scientists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">4. Misconceptions in data science</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Convert notebooks to scripts</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deliverables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../deliverables/0-project-requirements.html">Project requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deliverables/1-proposal.html">Deliverable 1: Proposal Report</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sample project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sample_project.html">Sample project</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/lecture5.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Convert notebooks to scripts</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-all-nonessential-code">1. Remove all nonessential code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactor-code-into-functions">2. Refactor code into functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refactor-diabetes-ridge-regression-training-notebook-into-functions">Refactor Diabetes Ridge Regression Training notebook into functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refactor-diabetes-ridge-regression-scoring-notebook-into-functions">Refactor Diabetes Ridge Regression Scoring notebook into functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-related-functions-in-python-files">Combine related functions in Python files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python-file-for-the-diabetes-ridge-regression-training-notebook">Create Python file for the Diabetes Ridge Regression Training notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python-file-for-the-diabetes-ridge-regression-scoring-notebook">Create Python file for the Diabetes Ridge Regression Scoring notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-script-in-the-terminal">Run the script in the terminal</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="convert-notebooks-to-scripts">
+<h1>Convert notebooks to scripts<a class="headerlink" href="#convert-notebooks-to-scripts" title="Link to this heading">#</a></h1>
+<p>A machine learning project requires experimentation where hypotheses are tested with agile tools like Jupyter Notebook using real datasets. Once the model is ready for production, the model code should be placed in a production code repository. In some cases, the model code must be converted to Python scripts to be placed in the production code repository. This tutorial covers a recommended approach on how to export experimentation code to Python scripts.</p>
+<p>In this tutorial, you learn how to:</p>
+<ul class="simple">
+<li><p>Clean nonessential code</p></li>
+<li><p>Refactor Jupyter Notebook code into functions</p></li>
+<li><p>Create Python scripts for related tasks</p></li>
+</ul>
+<p><strong>First, accept your adsc3910_worksheet5 on Moodle</strong></p>
+<section id="remove-all-nonessential-code">
+<h2>1. Remove all nonessential code<a class="headerlink" href="#remove-all-nonessential-code" title="Link to this heading">#</a></h2>
+<p>Some code written during experimentation is only intended for exploratory purposes. Therefore, the first step to convert experimental code into production code is to remove this nonessential code. Removing nonessential code will also make the code more maintainable. In this section, you’ll remove code from the <code class="docutils literal notranslate"><span class="pre">experimentation/Diabetes</span> <span class="pre">Ridge</span> <span class="pre">Regression</span> <span class="pre">Training.ipynb</span></code> notebook.</p>
+</section>
+<section id="refactor-code-into-functions">
+<h2>2. Refactor code into functions<a class="headerlink" href="#refactor-code-into-functions" title="Link to this heading">#</a></h2>
+<p>Second, the Jupyter code needs to be refactored into functions. Refactoring code into functions makes unit testing easier and makes the code more maintainable. In this section, you’ll refactor:</p>
+<ul class="simple">
+<li><p>The Diabetes Ridge Regression Training notebook(<code class="docutils literal notranslate"><span class="pre">experimentation/Diabetes</span> <span class="pre">Ridge</span> <span class="pre">Regression</span> <span class="pre">Training.ipynb</span></code>)</p></li>
+<li><p>The Diabetes Ridge Regression Scoring notebook(<code class="docutils literal notranslate"><span class="pre">experimentation/Diabetes</span> <span class="pre">Ridge</span> <span class="pre">Regression</span> <span class="pre">Scoring.ipynb</span></code>)</p></li>
+</ul>
+<section id="refactor-diabetes-ridge-regression-training-notebook-into-functions">
+<h3>Refactor Diabetes Ridge Regression Training notebook into functions<a class="headerlink" href="#refactor-diabetes-ridge-regression-training-notebook-into-functions" title="Link to this heading">#</a></h3>
+<p>In experimentation/Diabetes Ridge Regression Training.ipynb, complete the following steps:</p>
+<ul>
+<li><p>Create a function called <code class="docutils literal notranslate"><span class="pre">split_data</span></code> to split the data frame into test and train data. The function should take the dataframe df as a parameter, and return a dictionary containing the keys train and test.</p>
+<p>Move the code under the Split Data into Training and Validation Sets heading into the split_data function and modify it to return the data object.</p>
+</li>
+<li><p>Create a function called <code class="docutils literal notranslate"><span class="pre">train_model</span></code>, which takes the parameters data and args and returns a trained model.</p>
+<p>Move the code under the heading Training Model on Training Set into the train_model function and modify it to return the reg_model object. Remove the args dictionary, the values will come from the args parameter.</p>
+</li>
+<li><p>Create a function called <code class="docutils literal notranslate"><span class="pre">get_model_metrics</span></code>, which takes parameters reg_model and data, and evaluates the model then returns a dictionary of metrics for the trained model.</p>
+<p>Move the code under the Validate Model on Validation Set heading into the get_model_metrics function and modify it to return the metrics object.</p>
+</li>
+</ul>
+<p>Still in experimentation/Diabetes Ridge Regression Training.ipynb, complete the following steps:</p>
+<ol class="arabic simple">
+<li><p>Create a new function called <code class="docutils literal notranslate"><span class="pre">main</span></code>, which takes no parameters and returns nothing.</p></li>
+<li><p>Move the code under the “Load Data” heading into the main function.</p></li>
+<li><p>Add invocations for the newly written functions into the main function:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split Data into Training and Validation Sets</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">split_data</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+<span class="c1"># Train Model on Training Set</span>
+<span class="n">args</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="mf">0.5</span>
+<span class="p">}</span>
+<span class="n">reg</span> <span class="o">=</span> <span class="n">train_model</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+<span class="c1"># Validate Model on Validation Set</span>
+<span class="n">metrics</span> <span class="o">=</span> <span class="n">get_model_metrics</span><span class="p">(</span><span class="n">reg</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
+<li><p>Move the code under the “Save Model” heading into the main function.</p></li>
+</ol>
+<p>At this stage, there should be no code remaining in the notebook that isn’t in a function, other than import statements in the first cell.</p>
+<p>Add a statement that calls the main function.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>After refactoring, <code class="docutils literal notranslate"><span class="pre">experimentation/Diabetes</span> <span class="pre">Ridge</span> <span class="pre">Regression</span> <span class="pre">Training.ipynb</span></code> should look like the following code without the markdown:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_diabetes</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Ridge</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+
+
+<span class="c1"># Split the dataframe into test and train data</span>
+<span class="k">def</span> <span class="nf">split_data</span><span class="p">(</span><span class="n">df</span><span class="p">):</span>
+    <span class="c1"># YOUR CODE HERE</span>
+    <span class="k">return</span> <span class="n">data</span>
+
+
+<span class="c1"># Train the model, return the model</span>
+<span class="k">def</span> <span class="nf">train_model</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">args</span><span class="p">):</span>
+    <span class="c1"># YOUR CODE HERE</span>
+    <span class="k">return</span> <span class="n">reg_model</span>
+
+
+<span class="c1"># Evaluate the metrics for the model</span>
+<span class="k">def</span> <span class="nf">get_model_metrics</span><span class="p">(</span><span class="n">reg_model</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="c1"># YOURE CODE HERE</span>
+    <span class="k">return</span> <span class="n">metrics</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="c1"># YOUR CODE HERE</span>
+
+<span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="refactor-diabetes-ridge-regression-scoring-notebook-into-functions">
+<h3>Refactor Diabetes Ridge Regression Scoring notebook into functions<a class="headerlink" href="#refactor-diabetes-ridge-regression-scoring-notebook-into-functions" title="Link to this heading">#</a></h3>
+<p>In <code class="docutils literal notranslate"><span class="pre">experimentation/Diabetes</span> <span class="pre">Ridge</span> <span class="pre">Regression</span> <span class="pre">Scoring.ipynb</span></code>, complete the following steps:</p>
+<ol class="arabic simple">
+<li><p>Create a new function called <code class="docutils literal notranslate"><span class="pre">init</span></code>, which takes no parameters and return nothing.</p></li>
+<li><p>Copy the code under the “Load Model” heading into the init function.</p></li>
+<li><p>Once the init function has been created, replace all the code under the heading “Load Model” with a single call to init as follows:</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">init</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In <code class="docutils literal notranslate"><span class="pre">experimentation/Diabetes</span> <span class="pre">Ridge</span> <span class="pre">Regression</span> <span class="pre">Scoring.ipynb</span></code>, complete the following steps:</p>
+<ol class="arabic simple">
+<li><p>Create a new function called <code class="docutils literal notranslate"><span class="pre">run</span></code>, which takes <code class="docutils literal notranslate"><span class="pre">raw_data</span></code> and <code class="docutils literal notranslate"><span class="pre">request_headers</span></code> as parameters and returns a dictionary of results</p></li>
+<li><p>Copy the code under the “Prepare Data” and “Score Data” headings into the run function.
+The <code class="docutils literal notranslate"><span class="pre">run</span></code> function should look like the following code (Remember to remove the statements that set the variables raw_data and request_headers, which will be used later when the run function is called):</p></li>
+</ol>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">request_headers</span><span class="p">):</span>
+    <span class="c1"># YOUR CODE HERE</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">tolist</span><span class="p">()}</span>
+</pre></div>
+</div>
+<p>Once the run function has been created, replace all the code under the “Prepare Data” and “Score Data” headings with the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">raw_data</span> <span class="o">=</span> <span class="s1">&#39;{&quot;data&quot;:[[1,2,3,4,5,6,7,8,9,10],[10,9,8,7,6,5,4,3,2,1]]}&#39;</span>
+<span class="n">request_header</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">request_header</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test result: &quot;</span><span class="p">,</span> <span class="n">prediction</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The previous code sets variables <code class="docutils literal notranslate"><span class="pre">raw_data</span></code> and <code class="docutils literal notranslate"><span class="pre">request_header</span></code>, calls the <code class="docutils literal notranslate"><span class="pre">run</span></code> function with raw_data and request_header, and prints the predictions.</p>
+<p>After refactoring, <code class="docutils literal notranslate"><span class="pre">experimentation/Diabetes</span> <span class="pre">Ridge</span> <span class="pre">Regression</span> <span class="pre">Scoring.ipynb</span></code> should look like the following code without the markdown:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">numpy</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">joblib</span>
+
+<span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+    <span class="c1"># YOUR CODE HERE</span>
+
+<span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">raw_data</span><span class="p">,</span> <span class="n">request_headers</span><span class="p">):</span>
+    <span class="c1"># YOUR CODE HERE</span>
+
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">tolist</span><span class="p">()}</span>
+
+<span class="n">init</span><span class="p">()</span>
+<span class="n">test_row</span> <span class="o">=</span> <span class="s1">&#39;{&quot;data&quot;:[[1,2,3,4,5,6,7,8,9,10],[10,9,8,7,6,5,4,3,2,1]]}&#39;</span>
+<span class="n">request_header</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">prediction</span> <span class="o">=</span> <span class="n">run</span><span class="p">(</span><span class="n">test_row</span><span class="p">,</span> <span class="p">{})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Test result: &quot;</span><span class="p">,</span> <span class="n">prediction</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="combine-related-functions-in-python-files">
+<h2>Combine related functions in Python files<a class="headerlink" href="#combine-related-functions-in-python-files" title="Link to this heading">#</a></h2>
+<p>Third, related functions need to be merged into Python files to better help code reuse. In this section, you’ll be creating Python files for the following notebooks:</p>
+<ul class="simple">
+<li><p>The Diabetes Ridge Regression Training notebook(<code class="docutils literal notranslate"><span class="pre">experimentation/Diabetes</span> <span class="pre">Ridge</span> <span class="pre">Regression</span> <span class="pre">Training.ipynb</span></code>)</p></li>
+<li><p>The Diabetes Ridge Regression Scoring notebook(<code class="docutils literal notranslate"><span class="pre">experimentation/Diabetes</span> <span class="pre">Ridge</span> <span class="pre">Regression</span> <span class="pre">Scoring.ipynb</span></code>)</p></li>
+</ul>
+<section id="create-python-file-for-the-diabetes-ridge-regression-training-notebook">
+<h3>Create Python file for the Diabetes Ridge Regression Training notebook<a class="headerlink" href="#create-python-file-for-the-diabetes-ridge-regression-training-notebook" title="Link to this heading">#</a></h3>
+<p>In visual studio code, right click on the .ipynb file and choose <strong>Import Notebook to Script</strong>. This will create a python script from your notebook.</p>
+<p>Save the script as <code class="docutils literal notranslate"><span class="pre">train.py</span></code></p>
+<p>Once the notebook has been converted to <code class="docutils literal notranslate"><span class="pre">train.py</span></code>, remove any unwanted comments. Replace the call to <code class="docutils literal notranslate"><span class="pre">main()</span></code> at the end of the file with a conditional invocation like the following code:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">train.py</span></code> can now be invoked from a terminal by running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">train.py</span></code>. The functions from train.py can also be called from other files.</p>
+</section>
+<section id="create-python-file-for-the-diabetes-ridge-regression-scoring-notebook">
+<h3>Create Python file for the Diabetes Ridge Regression Scoring notebook<a class="headerlink" href="#create-python-file-for-the-diabetes-ridge-regression-scoring-notebook" title="Link to this heading">#</a></h3>
+<p>In visual studio code, right click on the .ipynb file and choose <strong>Import Notebook to Script</strong>. This will create a python script from your notebook.</p>
+<p>Save the script as <code class="docutils literal notranslate"><span class="pre">score.py</span></code></p>
+<p>Once the notebook has been converted to <code class="docutils literal notranslate"><span class="pre">score.py</span></code>, remove any unwanted comments.</p>
+<p>The model variable needs to be global so that it’s visible throughout the script. Add the following statement at the beginning of the <code class="docutils literal notranslate"><span class="pre">init</span></code> function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">global</span> <span class="n">model</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="run-the-script-in-the-terminal">
+<h2>Run the script in the terminal<a class="headerlink" href="#run-the-script-in-the-terminal" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Open a terminal and navigate to the <code class="docutils literal notranslate"><span class="pre">adsc3910_worksheet5/experimentation</span></code> folder</p></li>
+<li><p>Activate the adsc_3610 environment by typing <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">activate</span> <span class="pre">adsc_3610</span></code></p></li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">train.py</span></code> script by typing <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">train.py</span></code>. After running the script, should now see a .pkl file being generated. That is your trained model.</p></li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">score.py</span></code> script by typing <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">score.py</span></code>. After running the script, you should see the result of the prediction and mse values</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture4.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">4. Misconceptions in data science</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../deliverables/0-project-requirements.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Project requirements</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#remove-all-nonessential-code">1. Remove all nonessential code</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#refactor-code-into-functions">2. Refactor code into functions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refactor-diabetes-ridge-regression-training-notebook-into-functions">Refactor Diabetes Ridge Regression Training notebook into functions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#refactor-diabetes-ridge-regression-scoring-notebook-into-functions">Refactor Diabetes Ridge Regression Scoring notebook into functions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-related-functions-in-python-files">Combine related functions in Python files</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python-file-for-the-diabetes-ridge-regression-training-notebook">Create Python file for the Diabetes Ridge Regression Training notebook</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#create-python-file-for-the-diabetes-ridge-regression-scoring-notebook">Create Python file for the Diabetes Ridge Regression Scoring notebook</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-script-in-the-terminal">Run the script in the terminal</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quan Nguyen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
