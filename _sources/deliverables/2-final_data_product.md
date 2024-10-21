@@ -2,8 +2,11 @@
 
 This week, you are required to submit a draft version of your final data product, which will take the form of a Github project repository. The submission deadline can be found in the course syllabus. Here's an overview of the deadlines:
 
-1. Oct 30: Your group submit the Github repository to Moodle (worth 20% of your total grade)
-2. Oct 30 - Nov 6: Each student gets assigned 2 groups for peer review (worth 5% of your total grade)
+|     | Task Description                                                                                                                                                       | Date                  | Weight |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- | ------- |
+| 1   | Submit your group Github repo                    | Oct 30th 2024, 11:59 PM | 20%      |
+| 2   | Review other groups repo               | Oct 30th - Nov 6th, 11:59 PM                     | 5%       |
+
 
 Your submission should meet the following key requirements:
 You will be using the same criteria when peer reviewing others' group projects.
