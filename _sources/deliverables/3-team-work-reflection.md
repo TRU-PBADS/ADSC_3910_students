@@ -1,8 +1,27 @@
-![](../img/591_banner.png)
-
 # Deliverable 3: Team Work Reflection
 
-The team work reflection deliverable is an *individual* report intended to give you an avenue to present your viewpoint as to how the project went, how the group worked together, and your role in the group. Each group member must complete this form to report on the contributions of **yourself** and the other group members. That information can, if needed, be used to adjust final grades of individuals using the [project contribution multiplier](https://github.com/UBC-MDS/public/blob/master/rubric/rubric_multiplier.md). This is a private, individual report, meaning that none of your group members will see this report.
+The team work reflection deliverable is an *individual* report intended to give you an avenue to present your viewpoint as to how the project went, how the group worked together, and your role in the group. Each group member must complete this form to report on the contributions of **yourself** and the other group members. That information can, if needed, be used to adjust final grades of individuals using the **project contribution multiplier**. This is a private, individual report, meaning that none of your group members will see this report.
+
+
+## Project contribution multiplier
+<table>
+  <tr>
+    <th>Destructive contribution (0.0)</th>
+    <th>No contribution (0.5)</th>
+    <th>Multiple issues (0.7)</th>
+    <th>Some issues (0.8)</th>
+    <th>Minor issues (0.9)</th>  
+    <th>Solid contribution (1.0)</th>
+  </tr>
+  <tr>
+	<td>The member has no positive contributions in the project. The member's contribution were more destructive than constructive (e.g., corrupting work done by other team members, doing or redoing other team member's tasks without clear communication, repeatedly violating the Code of Conduct or team-work contract set by the team)</td>
+	<td>The member has very minimal positive contributions in the project (e.g., only a few commits). They failed to take responsibility and relied on other team mates to complete the project. The member's contribution were more destructive than constructive (e.g., corrupting work done by other team members, doing or redoing other team member's tasks without clear communication, repeatedly violating the Code of Conduct or team-work contract set by the team). </td>
+	<td>The member has some contributions in the project but only met a few expectations of the team mates and the teaching team. The team mates were not able to rely on them to complete tasks. </td>
+	<td>The member has reasonable contributions in the project (e.g., meaningful GitHub commits, active participation in labs). The member more or less met the expectations of their teammates and the teaching team with 3 to 5 exceptions. Some example exceptions include erroneous work, violating the Code of Conduct or team-work contract set by the team, doing or redoing other team member's tasks without clear communication, or being late on finishing tasks. </td>
+	<td>The member has significant contributions in the project (e.g., meaningful GitHub commits, active participation in labs). The member mostly met the expectations of their team-mates and the teaching team with 1 to 2 exceptions. Some example exceptions include being late on completing tasks, writing with grammatical errors, or violating the Code of Conduct or team-work contract set by the team. </td>
+	<td>The member whole-heartedly contributed to the project (e.g., meaningful GitHub commits, active participation in labs). Overall, the team member fully met the expectations of their teammates and the teaching team. </td>
+  </tr>
+</table>
 
 ## 1. General teamwork evaluation
 
@@ -104,12 +123,3 @@ Comments here.
 ### Your name
 
 Comments here.
-
-## 3. Partner evaluation
-
-Below, briefly describe your experience working with your specific capstone partner:
-
-- Did you enjoy working with your partner and did they treat you respectfully?
-- Was the partner engaged and supportive?
- 
-Point form is fine.
