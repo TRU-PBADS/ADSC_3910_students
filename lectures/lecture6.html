@@ -1,0 +1,1348 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>6. Writing unit tests &#8212; ADSC 3910 - Applied Data Science Integrated Practice 2</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'lectures/lecture6';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Project requirements" href="../deliverables/0-project-requirements.html" />
+    <link rel="prev" title="5. Convert notebooks to scripts" href="lecture5.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../syllabus.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/TRU_Logo.png" class="logo__image only-light" alt="ADSC 3910 - Applied Data Science Integrated Practice 2 - Home"/>
+    <script>document.write(`<img src="../_static/TRU_Logo.png" class="logo__image only-dark" alt="ADSC 3910 - Applied Data Science Integrated Practice 2 - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../syllabus.html">
+                    ADSC 3910 - Applied Data Science Integrated Practice 2
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lectures Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="lecture1.html">1. Version control with GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture2.html">2. Setting up reproducible environment</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture3.html">3. Technical writing for data scientists</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture4.html">4. Misconceptions in data science</a></li>
+<li class="toctree-l1"><a class="reference internal" href="lecture5.html">5. Convert notebooks to scripts</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">6. Writing unit tests</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Deliverables</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../deliverables/0-project-requirements.html">Project requirements</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deliverables/1-proposal.html">Deliverable 1: Proposal Report</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../deliverables/2-final_data_product.html">Deliverable 2: Final Data Product</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Teamwork reflection (to be used at the end of the semester)</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../deliverables/3-team-work-reflection.html">Deliverable 3: Team Work Reflection</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Sample project</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../sample_project.html">Sample project</a></li>
+
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/lectures/lecture6.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>6. Writing unit tests</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose-of-unit-testing-in-data-science-projects">1. Purpose of Unit Testing in Data Science Projects</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analogy-building-a-house">Analogy: Building a House</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-benefits">Key Benefits:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-structure-of-a-unit-test">2. Basic Structure of a Unit Test</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-a-unit-test">Components of a Unit Test:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#put-everything-in-python-scripts">Put everything in Python scripts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-test-runner">3. Choosing a test runner</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unittest"><code class="docutils literal notranslate"><span class="pre">unittest</span></code>:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pytest"><code class="docutils literal notranslate"><span class="pre">pytest</span></code>:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-pytest-is-preferred">Why <code class="docutils literal notranslate"><span class="pre">pytest</span></code> is Preferred:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-to-write-the-tests">Where to write the tests</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-assert-statements">Writing <code class="docutils literal notranslate"><span class="pre">assert</span></code> statements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-numeric-output">Comparing numeric output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-list">Comparing list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-dataframes">Comparing dataframes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-strings">Comparing strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="writing-unit-tests">
+<h1>6. Writing unit tests<a class="headerlink" href="#writing-unit-tests" title="Link to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
+<p>Unit testing is a fundamental practice in software development, including data science projects. It ensures that individual components of your code work as expected. This lecture will cover the purpose of unit testing, the basic structure of a unit test, the differences between <code class="docutils literal notranslate"><span class="pre">unittest</span></code> and <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, and examples of writing unit tests for various data types.</p>
+</section>
+<section id="purpose-of-unit-testing-in-data-science-projects">
+<h2>1. Purpose of Unit Testing in Data Science Projects<a class="headerlink" href="#purpose-of-unit-testing-in-data-science-projects" title="Link to this heading">#</a></h2>
+<section id="analogy-building-a-house">
+<h3>Analogy: Building a House<a class="headerlink" href="#analogy-building-a-house" title="Link to this heading">#</a></h3>
+<p>Imagine it’s December in Kamloops, and the weather is getting cold. You notice that the heating system in your house is not working properly. To fix the issue, you need to identify the root cause. Is it a problem with the gas supply? Is there an issue with the electrical wiring? Or is the insulation layer of the house too thin, causing heat to escape?</p>
+<p>Just like diagnosing the heating system in your house, unit testing in a data science project helps you pinpoint specific issues in your code. By testing individual components, you can quickly identify and fix problems, ensuring that the overall system functions correctly.</p>
+</section>
+<section id="key-benefits">
+<h3>Key Benefits:<a class="headerlink" href="#key-benefits" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Ensures Code Quality:</strong> Catches bugs early in the development process.</p></li>
+<li><p><strong>Facilitates Refactoring:</strong> Allows you to refactor code confidently, knowing that existing functionality is preserved.</p></li>
+<li><p><strong>Improves Collaboration:</strong> Provides a clear understanding of code functionality for team members.</p></li>
+<li><p><strong>Documentation:</strong> Acts as documentation for the code, explaining what each function is supposed to do.</p></li>
+</ul>
+</section>
+</section>
+<section id="basic-structure-of-a-unit-test">
+<h2>2. Basic Structure of a Unit Test<a class="headerlink" href="#basic-structure-of-a-unit-test" title="Link to this heading">#</a></h2>
+<section id="components-of-a-unit-test">
+<h3>Components of a Unit Test:<a class="headerlink" href="#components-of-a-unit-test" title="Link to this heading">#</a></h3>
+<p>Most functional tests follow the Arrange-Act-Assert model:</p>
+<ol class="arabic simple">
+<li><p><strong>Arrange</strong>, or set up, the conditions for the test</p></li>
+<li><p><strong>Act</strong> by calling some function or method</p></li>
+<li><p><strong>Assert</strong> that some end condition is true</p></li>
+</ol>
+<section id="example">
+<h4>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h4>
+<p>Let’s write a simple function to calculate the mean of a list of numbers and write a unit test for it.</p>
+<p><strong>Function to Test:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_mean</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Unit Test:</strong></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># arrange</span>
+<span class="n">list_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+
+<span class="c1"># act</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">calculate_mean</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span>
+
+<span class="c1"># assert</span>
+<span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>We can wrap it inside a function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">test_calculate_mean</span><span class="p">():</span>
+    <span class="c1"># arrange</span>
+    <span class="n">list_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+    <span class="c1"># act</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">calculate_mean</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span>
+
+    <span class="c1"># assert</span>
+    <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Expected 3, but got </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<blockquote>
+<div><p>Note: Writing a meaningful error message</p>
+</div></blockquote>
+<p>You can use f string to write a meaningful error message if the test case fail so that it’s easier for future you and other people to understand why the program is failing</p>
+<p>Now let’s try to temper with our original <code class="docutils literal notranslate"><span class="pre">calculate_mean</span></code> function by adding 3 to the numerator and see if the unit test we wrote will manage to catch the problems</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">calculate_mean</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span> <span class="o">+</span> <span class="mi">3</span><span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">test_calculate_mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">13</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">test_calculate_mean</span><span class="p">()</span>
+
+<span class="nn">Cell In[12], line 9,</span> in <span class="ni">test_calculate_mean</span><span class="nt">()</span>
+<span class="g g-Whitespace">      </span><span class="mi">6</span> <span class="n">output</span> <span class="o">=</span> <span class="n">calculate_mean</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span>
+<span class="g g-Whitespace">      </span><span class="mi">8</span> <span class="c1"># Compare the output to an expected result</span>
+<span class="ne">----&gt; </span><span class="mi">9</span> <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Expected 3, but got </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="ne">AssertionError</span>: Expected 3, but got 15.6
+</pre></div>
+</div>
+</div>
+</div>
+<p>Ah ha! You could see that our unit test has been able to catch this mistake</p>
+</section>
+</section>
+<section id="put-everything-in-python-scripts">
+<h3>Put everything in Python scripts<a class="headerlink" href="#put-everything-in-python-scripts" title="Link to this heading">#</a></h3>
+<p>Let’s say you have a script called <code class="docutils literal notranslate"><span class="pre">mean.py</span></code> that contains the <code class="docutils literal notranslate"><span class="pre">calculate_mean()</span></code> function</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># mean.py</span>
+<span class="k">def</span> <span class="nf">calculate_mean</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now let’s put the unit tests in a Python script called <code class="docutils literal notranslate"><span class="pre">test_mean.py</span></code> and execute it again. First, you need to import the <code class="docutils literal notranslate"><span class="pre">calculate_mean</span></code> function from the <code class="docutils literal notranslate"><span class="pre">mean.py</span></code> module</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">mean</span> <span class="kn">import</span> <span class="n">calculate_mean</span>
+
+<span class="k">def</span> <span class="nf">test_calculate_mean</span><span class="p">():</span>
+    <span class="c1"># arrange</span>
+    <span class="n">list_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+    <span class="c1"># act</span>
+    <span class="n">output</span> <span class="o">=</span> <span class="n">calculate_mean</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span>
+
+    <span class="c1"># assert</span>
+    <span class="k">assert</span> <span class="n">output</span> <span class="o">==</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Expected 3, but got </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">test_calculate_mean</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Everything passed!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Now let’s open a terminal and run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">test_mean.py</span></code> to see if it works</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>test_mean.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Everything passed!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Voila!</p>
+</section>
+</section>
+<section id="choosing-a-test-runner">
+<h2>3. Choosing a test runner<a class="headerlink" href="#choosing-a-test-runner" title="Link to this heading">#</a></h2>
+<p>There are two main test runners: <code class="docutils literal notranslate"><span class="pre">unittest</span></code> which is a built-in python module, and <code class="docutils literal notranslate"><span class="pre">pytest</span></code>. I usually prefer to use <code class="docutils literal notranslate"><span class="pre">pytest</span></code> since the syntax is more simple and consise, and it also provides more detailed error message and tracebacks.</p>
+<p>Let’s have a look at both and see their differences</p>
+<section id="unittest">
+<h3><code class="docutils literal notranslate"><span class="pre">unittest</span></code>:<a class="headerlink" href="#unittest" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">unittest</span></code> requires that:</p>
+<ul class="simple">
+<li><p>You put your tests into <strong>classes</strong> as methods</p></li>
+<li><p>You use a series of <strong>special assertion methods</strong> in the unittest.TestCase class instead of the built-in assert statement</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># test_mean_unittest.py</span>
+
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">mean</span> <span class="kn">import</span> <span class="n">calculate_mean</span>
+
+<span class="k">class</span> <span class="nc">TestCalculateMean</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_calculate_mean</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># arrange</span>
+        <span class="n">list_numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+
+        <span class="c1"># act</span>
+        <span class="n">output</span> <span class="o">=</span> <span class="n">calculate_mean</span><span class="p">(</span><span class="n">list_numbers</span><span class="p">)</span>
+
+        <span class="c1"># assert</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;Expected 3, but got </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span><span class="err">```</span>
+</pre></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>python<span class="w"> </span>test_mean_unittest.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>.
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+OK
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Pros:</strong></p>
+<ul>
+<li><p>Built-in Python module.</p></li>
+<li><p>Provides a comprehensive framework for writing and running tests.</p></li>
+<li><p>Supports test discovery and fixtures.</p></li>
+</ul>
+</li>
+<li><p><strong>Cons:</strong></p>
+<ul>
+<li><p>Verbose syntax.</p></li>
+<li><p>Limited to the features provided by the standard library.</p></li>
+</ul>
+</li>
+</ul>
+<section id="pytest">
+<h4><code class="docutils literal notranslate"><span class="pre">pytest</span></code>:<a class="headerlink" href="#pytest" title="Link to this heading">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span></code> supports execution of <code class="docutils literal notranslate"><span class="pre">unittest</span></code> test cases. The real advantage of pytest comes by writing pytest test cases. pytest test cases are a series of functions in a Python file starting with the name test_.</p>
+<p><code class="docutils literal notranslate"><span class="pre">pytest</span></code> has some other great features:</p>
+<ul class="simple">
+<li><p>Support for the built-in assert statement instead of using special self.assert*() methods</p></li>
+<li><p>Support for filtering for test cases</p></li>
+<li><p>Ability to rerun from the last failing test</p></li>
+<li><p>An ecosystem of hundreds of plugins to extend the functionality</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">!</span>pytest<span class="w"> </span>test_mean.py
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span><span class=" -Color -Color-Bold">============================= test session starts ==============================</span>
+platform darwin -- Python 3.12.5, pytest-8.3.2, pluggy-1.5.0
+rootdir: /Users/quannguyen/TRU-PBADS/ADSC_3910_instructors/lectures
+collected 1 item                                                               
+
+test_mean.py <span class=" -Color -Color-Green">.                                                           [100%]</span>
+
+<span class=" -Color -Color-Green">============================== </span><span class=" -Color -Color-Bold -Color-Bold-Green">1 passed</span><span class=" -Color -Color-Green"> in 0.01s ===============================</span>
+</pre></div>
+</div>
+</div>
+</div>
+<ul class="simple">
+<li><p><strong>Pros:</strong></p>
+<ul>
+<li><p>Simple and concise syntax.</p></li>
+<li><p>Supports fixtures, parameterized tests, and plugins.</p></li>
+<li><p>Provides detailed error messages and tracebacks.</p></li>
+<li><p>Can run <code class="docutils literal notranslate"><span class="pre">unittest</span></code> tests.</p></li>
+</ul>
+</li>
+<li><p><strong>Cons:</strong></p>
+<ul>
+<li><p>Requires installation of an external package.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="why-pytest-is-preferred">
+<h4>Why <code class="docutils literal notranslate"><span class="pre">pytest</span></code> is Preferred:<a class="headerlink" href="#why-pytest-is-preferred" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Ease of Use:</strong> <code class="docutils literal notranslate"><span class="pre">pytest</span></code> has a more straightforward and readable syntax.</p></li>
+<li><p><strong>Flexibility:</strong> Supports advanced features like fixtures and parameterized tests.</p></li>
+<li><p><strong>Extensibility:</strong> Offers a wide range of plugins to extend its functionality.</p></li>
+</ul>
+</section>
+</section>
+<section id="where-to-write-the-tests">
+<h3>Where to write the tests<a class="headerlink" href="#where-to-write-the-tests" title="Link to this heading">#</a></h3>
+<p>Typically this is how a project directory structure looks like:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span><span class="o">/</span>
+<span class="err">│</span>
+<span class="err">├──</span> <span class="n">src</span><span class="o">/</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="n">function_1</span><span class="o">.</span><span class="n">py</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="n">function_2</span><span class="o">.</span><span class="n">py</span>
+<span class="err">├──</span> <span class="n">tests</span><span class="o">/</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="n">test_function_1</span><span class="o">.</span><span class="n">py</span>
+<span class="err">│</span>   <span class="err">└──</span> <span class="n">test_function_2</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>You’ll find that, as you add more and more tests, your single file will become cluttered and hard to maintain, so you can create a folder called <code class="docutils literal notranslate"><span class="pre">tests/</span></code> and split the tests into multiple files. It is convention to ensure each file starts with test_ so all test runners will assume that Python file contains tests to be executed.</p>
+</section>
+</section>
+<section id="writing-assert-statements">
+<h2>Writing <code class="docutils literal notranslate"><span class="pre">assert</span></code> statements<a class="headerlink" href="#writing-assert-statements" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Assert Statement</p></th>
+<th class="head"><p>Example</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">==</span> <span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3])</span> <span class="pre">==</span> <span class="pre">2</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">!=</span> <span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3])</span> <span class="pre">!=</span> <span class="pre">3</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">x</span> <span class="pre">is</span> <span class="pre">True</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">isinstance(calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3]),</span> <span class="pre">float)</span> <span class="pre">is</span> <span class="pre">True</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">x</span> <span class="pre">is</span> <span class="pre">False</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">(calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3])</span> <span class="pre">==</span> <span class="pre">0)</span> <span class="pre">is</span> <span class="pre">False</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">is</span> <span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3])</span> <span class="pre">is</span> <span class="pre">calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3])</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3])</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">calculate_mean([4,</span> <span class="pre">5,</span> <span class="pre">6])</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">x</span> <span class="pre">is</span> <span class="pre">None</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">None</span> <span class="pre">is</span> <span class="pre">None</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">x</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">None</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3])</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">None</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">in</span> <span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">3</span> <span class="pre">in</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5]</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">6</span> <span class="pre">not</span> <span class="pre">in</span> <span class="pre">[1,</span> <span class="pre">2,</span> <span class="pre">3,</span> <span class="pre">4,</span> <span class="pre">5]</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">isinstance(a,</span> <span class="pre">b)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">isinstance(calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3]),</span> <span class="pre">float)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">not</span> <span class="pre">isinstance(a,</span> <span class="pre">b)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">not</span> <span class="pre">isinstance(calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3]),</span> <span class="pre">int)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">==</span> <span class="pre">pytest.approx(b)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3])</span> <span class="pre">==</span> <span class="pre">pytest.approx(2.0,</span> <span class="pre">rel=1e-2)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">&gt;</span> <span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">calculate_mean([4,</span> <span class="pre">5,</span> <span class="pre">6])</span> <span class="pre">&gt;</span> <span class="pre">3</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">&gt;=</span> <span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">calculate_mean([3,</span> <span class="pre">4,</span> <span class="pre">5])</span> <span class="pre">&gt;=</span> <span class="pre">3</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">&lt;</span> <span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3])</span> <span class="pre">&lt;</span> <span class="pre">4</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">a</span> <span class="pre">&lt;=</span> <span class="pre">b</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">calculate_mean([1,</span> <span class="pre">2,</span> <span class="pre">3])</span> <span class="pre">&lt;=</span> <span class="pre">3</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">re.search(r,</span> <span class="pre">s)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">re.search(r&quot;hello&quot;,</span> <span class="pre">&quot;hello</span> <span class="pre">world&quot;)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">not</span> <span class="pre">re.search(r,</span> <span class="pre">s)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">not</span> <span class="pre">re.search(r&quot;bye&quot;,</span> <span class="pre">&quot;hello</span> <span class="pre">world&quot;)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">sorted(a)</span> <span class="pre">==</span> <span class="pre">sorted(b)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">assert</span> <span class="pre">sorted([1,</span> <span class="pre">2,</span> <span class="pre">3])</span> <span class="pre">==</span> <span class="pre">sorted([3,</span> <span class="pre">2,</span> <span class="pre">1])</span></code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>Note: <code class="docutils literal notranslate"><span class="pre">pytest.approx</span></code> is used for approximate comparisons, useful for floating-point comparisons.</p>
+<section id="comparing-numeric-output">
+<h3>Comparing numeric output<a class="headerlink" href="#comparing-numeric-output" title="Link to this heading">#</a></h3>
+<p>When working with floats, set a precision level that is appropriate for your application</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span>
+<span class="n">b</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="k">assert</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">12</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">a</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">+</span> <span class="mf">0.2</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">b</span> <span class="o">=</span> <span class="mf">0.3</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="k">assert</span> <span class="n">a</span> <span class="o">==</span> <span class="n">b</span>
+
+<span class="ne">AssertionError</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.30000000000000004
+0.3
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pytest</span>
+<span class="k">assert</span> <span class="n">a</span> <span class="o">==</span> <span class="n">pytest</span><span class="o">.</span><span class="n">approx</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">rel</span><span class="o">=</span><span class="mf">1e-9</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-list">
+<h3>Comparing list<a class="headerlink" href="#comparing-list" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">list_b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="k">assert</span> <span class="n">list_a</span> <span class="o">==</span> <span class="n">list_b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">16</span><span class="p">],</span> <span class="n">line</span> <span class="mi">4</span>
+<span class="g g-Whitespace">      </span><span class="mi">1</span> <span class="n">list_a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="n">list_b</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span>
+<span class="ne">----&gt; </span><span class="mi">4</span> <span class="k">assert</span> <span class="n">list_a</span> <span class="o">==</span> <span class="n">list_b</span>
+
+<span class="ne">AssertionError</span>: 
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Sort both lists before comparing</span>
+<span class="k">assert</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">list_a</span><span class="p">)</span> <span class="o">==</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">list_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-dataframes">
+<h3>Comparing dataframes<a class="headerlink" href="#comparing-dataframes" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas.testing</span> <span class="kn">import</span> <span class="n">assert_frame_equal</span>
+
+<span class="n">df_a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]})</span>
+<span class="n">df_b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span> <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]})</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>B</th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>3</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df_a</span><span class="p">,</span> <span class="n">df_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">49</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df_a</span><span class="p">,</span> <span class="n">df_b</span><span class="p">)</span>
+
+    <span class="p">[</span><span class="o">...</span> <span class="n">skipping</span> <span class="n">hidden</span> <span class="mi">2</span> <span class="n">frame</span><span class="p">]</span>
+
+<span class="nn">File testing.pyx:55,</span> in <span class="ni">pandas._libs.testing.assert_almost_equal</span><span class="nt">()</span>
+
+<span class="nn">File testing.pyx:173,</span> in <span class="ni">pandas._libs.testing.assert_almost_equal</span><span class="nt">()</span>
+
+<span class="nn">File /opt/miniconda3/envs/adsc_3610/lib/python3.12/site-packages/pandas/_testing/asserters.py:614,</span> in <span class="ni">raise_assert_detail</span><span class="nt">(obj, message, left, right, diff, first_diff, index_values)</span>
+<span class="g g-Whitespace">    </span><span class="mi">611</span> <span class="k">if</span> <span class="n">first_diff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">612</span>     <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">first_diff</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">614</span> <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="ne">AssertionError</span>: DataFrame.columns are different
+
+<span class="n">DataFrame</span><span class="o">.</span><span class="n">columns</span> <span class="n">values</span> <span class="n">are</span> <span class="n">different</span> <span class="p">(</span><span class="mf">100.0</span> <span class="o">%</span><span class="p">)</span>
+<span class="p">[</span><span class="n">left</span><span class="p">]:</span>  <span class="n">Index</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">right</span><span class="p">]:</span> <span class="n">Index</span><span class="p">([</span><span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
+<span class="n">At</span> <span class="n">positional</span> <span class="n">index</span> <span class="mi">0</span><span class="p">,</span> <span class="n">first</span> <span class="n">diff</span><span class="p">:</span> <span class="n">A</span> <span class="o">!=</span> <span class="n">B</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>To ignore the columns’ order when comparing dataframes, we can use the <code class="docutils literal notranslate"><span class="pre">check_like</span></code> option.
+When <code class="docutils literal notranslate"><span class="pre">check_like=True</span></code>, the function will sort the columns and rows before performing the comparison, ensuring that the DataFrames are considered equal if they contain the same data, regardless of the order.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df_a</span><span class="p">,</span> <span class="n">df_b</span><span class="p">,</span> <span class="n">check_like</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Indexes also matter</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">pandas.testing</span> <span class="kn">import</span> <span class="n">assert_frame_equal</span>
+
+<span class="c1"># Example DataFrames with different indexes</span>
+<span class="n">df_a</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+
+<span class="n">df_b</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">&#39;A&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+    <span class="s1">&#39;B&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="p">},</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_a</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df_b</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df_a</span><span class="p">,</span> <span class="n">df_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">60</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df_a</span><span class="p">,</span> <span class="n">df_b</span><span class="p">)</span>
+
+    <span class="p">[</span><span class="o">...</span> <span class="n">skipping</span> <span class="n">hidden</span> <span class="mi">2</span> <span class="n">frame</span><span class="p">]</span>
+
+<span class="nn">File testing.pyx:55,</span> in <span class="ni">pandas._libs.testing.assert_almost_equal</span><span class="nt">()</span>
+
+<span class="nn">File testing.pyx:173,</span> in <span class="ni">pandas._libs.testing.assert_almost_equal</span><span class="nt">()</span>
+
+<span class="nn">File /opt/miniconda3/envs/adsc_3610/lib/python3.12/site-packages/pandas/_testing/asserters.py:614,</span> in <span class="ni">raise_assert_detail</span><span class="nt">(obj, message, left, right, diff, first_diff, index_values)</span>
+<span class="g g-Whitespace">    </span><span class="mi">611</span> <span class="k">if</span> <span class="n">first_diff</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<span class="g g-Whitespace">    </span><span class="mi">612</span>     <span class="n">msg</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">first_diff</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="ne">--&gt; </span><span class="mi">614</span> <span class="k">raise</span> <span class="ne">AssertionError</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+<span class="ne">AssertionError</span>: DataFrame.index are different
+
+<span class="n">DataFrame</span><span class="o">.</span><span class="n">index</span> <span class="n">values</span> <span class="n">are</span> <span class="n">different</span> <span class="p">(</span><span class="mf">50.0</span> <span class="o">%</span><span class="p">)</span>
+<span class="p">[</span><span class="n">left</span><span class="p">]:</span>  <span class="n">Index</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+<span class="p">[</span><span class="n">right</span><span class="p">]:</span> <span class="n">Index</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+<span class="n">At</span> <span class="n">positional</span> <span class="n">index</span> <span class="mi">0</span><span class="p">,</span> <span class="n">first</span> <span class="n">diff</span><span class="p">:</span> <span class="mi">0</span> <span class="o">!=</span> <span class="mi">2</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Assert DataFrames are equal ignoring index differences</span>
+<span class="n">assert_frame_equal</span><span class="p">(</span><span class="n">df_a</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">df_b</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="n">check_like</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="comparing-strings">
+<h3>Comparing strings<a class="headerlink" href="#comparing-strings" title="Link to this heading">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">string_a</span> <span class="o">=</span> <span class="s2">&quot;hello&quot;</span>
+<span class="n">string_b</span> <span class="o">=</span> <span class="s2">&quot;Hello&quot;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">string_a</span> <span class="o">==</span> <span class="n">string_b</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">string_a</span><span class="si">}</span><span class="s2"> is not equal to </span><span class="si">{</span><span class="n">string_b</span><span class="si">}</span><span class="s2">&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">AssertionError</span><span class="g g-Whitespace">                            </span>Traceback (most recent call last)
+<span class="n">Cell</span> <span class="n">In</span><span class="p">[</span><span class="mi">72</span><span class="p">],</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="k">assert</span> <span class="n">string_a</span> <span class="o">==</span> <span class="n">string_b</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">string_a</span><span class="si">}</span><span class="s2"> is not equal to </span><span class="si">{</span><span class="n">string_b</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="ne">AssertionError</span>: hello is not equal to Hello
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span> <span class="n">string_a</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">string_b</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<hr class="docutils" />
+<section id="conclusion">
+<h3>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h3>
+<p>Unit testing is essential for ensuring code quality and reliability in data science projects. By using frameworks like <code class="docutils literal notranslate"><span class="pre">unittest</span></code> and <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, you can write tests that verify the correctness of your code. While <code class="docutils literal notranslate"><span class="pre">unittest</span></code> is built into Python, <code class="docutils literal notranslate"><span class="pre">pytest</span></code> is often preferred for its simplicity and flexibility.</p>
+<section id="key-takeaways">
+<h4>Key Takeaways:<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Unit testing ensures that individual components of your code work as expected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unittest</span></code> and <code class="docutils literal notranslate"><span class="pre">pytest</span></code> are popular frameworks for writing unit tests in Python.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pytest</span></code> is preferred for its ease of use and advanced features.</p></li>
+<li><p>Write unit tests for various data types to ensure comprehensive test coverage.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h3>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://realpython.com/python-testing/">Getting Started With Testing in Python</a></p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/unittest.html">Python <code class="docutils literal notranslate"><span class="pre">unittest</span></code> Documentation</a></p></li>
+<li><p><a class="reference external" href="https://docs.pytest.org/en/stable/">pytest Documentation</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./lectures"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="lecture5.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">5. Convert notebooks to scripts</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../deliverables/0-project-requirements.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Project requirements</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#purpose-of-unit-testing-in-data-science-projects">1. Purpose of Unit Testing in Data Science Projects</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analogy-building-a-house">Analogy: Building a House</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-benefits">Key Benefits:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-structure-of-a-unit-test">2. Basic Structure of a Unit Test</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-a-unit-test">Components of a Unit Test:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#put-everything-in-python-scripts">Put everything in Python scripts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-a-test-runner">3. Choosing a test runner</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unittest"><code class="docutils literal notranslate"><span class="pre">unittest</span></code>:</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#pytest"><code class="docutils literal notranslate"><span class="pre">pytest</span></code>:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-pytest-is-preferred">Why <code class="docutils literal notranslate"><span class="pre">pytest</span></code> is Preferred:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#where-to-write-the-tests">Where to write the tests</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#writing-assert-statements">Writing <code class="docutils literal notranslate"><span class="pre">assert</span></code> statements</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-numeric-output">Comparing numeric output</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-list">Comparing list</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-dataframes">Comparing dataframes</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-strings">Comparing strings</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Quan Nguyen
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
