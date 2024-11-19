@@ -54,7 +54,7 @@ Office hour: Thu 11:30 AM-12:30 PM at OM 1232. Please book your timeslot [here](
 |       12 | Mon      | Nov 18 | Final presentation                                |
 |       12 | Wed      | Nov 20 | Final presentation                                |
 |       13 | Mon      | Nov 25 | Teamwork time on final report                     |
-|       13 | Wed      | Nov 27 | Final submission                                  |
+|       13 | Wed      | Dec 01 | Final submission                                  |
 
 ## Assessment overview
 
