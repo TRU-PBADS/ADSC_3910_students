@@ -32,12 +32,18 @@ You will be using the same criteria when peer reviewing others' group projects.
 - **Environment Setup**: Provide clear and thorough instructions in the README on how to set up the environment necessary to run your analysis. For instance, you can include steps to set up a `conda` environment or a `virtualenv` to ensure consistency across systems.
 - **Reproduction Instructions**: In the README, provide a step-by-step guide that explains how to re-run the entire analysis from start to finish, including data loading, pre-processing, model training, and results generation. This should ensure that others can replicate your work without any confusion.
 
-### 4. **Application of MongoDB and PySpark (25%)**
+### 4. **Application of MongoDB and PySpark (15%)**
 
 - **MongoDB Usage**: Your project should showcase meaningful applications of MongoDB’s query language. At a minimum, MongoDB should be used for data pre-processing and cleaning. Merely importing data from MongoDB into Python is insufficient. You must demonstrate how you applied MongoDB queries (e.g., `$project`, `$match`, `$group`) to transform or analyze the data as part of your workflow.
 - **PySpark Usage**: Similarly, your project must integrate PySpark for data pre-processing, transformation, or feature engineering. Demonstrating the ability to manipulate large datasets using PySpark is crucial.
 
-### 5. **Equal Group Contributions**
+### 5. **Unit tests (10%)**
+- For each Python script used in your project (e.g., data preprocessing, model training, or evaluation), you should provide a corresponding unit test file. For instance, if you have a script `data_preprocessing.py`, there should be a test script named `test_data_preprocessing.py`
+ - Test Coverage: Aim for comprehensive test coverage of your scripts. For each script, you should write tests that:
+    - **Test Functionality**: Validate that the functions in your script perform their intended tasks correctly. For example, if you have a function to clean missing values in your dataset, write a test that checks that missing values are properly handled.
+    - **Test Edge Cases**: Ensure that your tests cover edge cases and potential failure points. For example, test how your code handles an empty dataset, incorrect input formats, or unexpected data types.
+
+### 6. **Equal Group Contributions**
 
 - **Commit History and Contributions**: Your individual contribution to the project will be assessed based on your Github commit history and the amount of code you contributed. Active participation throughout the project is essential, and your grade will be proportional to your level of contribution.
   - If your contribution is minimal (e.g., few commits), your grade for this project will reflect that.

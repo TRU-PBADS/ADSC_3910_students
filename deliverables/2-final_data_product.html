@@ -60,7 +60,7 @@
     <script>DOCUMENTATION_OPTIONS.pagename = 'deliverables/2-final_data_product';</script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Deliverable 3: Team Work Reflection" href="3-team-work-reflection.html" />
+    <link rel="next" title="Final Report Instructions for Data Science Project" href="4-final_report.html" />
     <link rel="prev" title="Deliverable 1: Proposal Report" href="1-proposal.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -193,6 +193,7 @@
 <li class="toctree-l1"><a class="reference internal" href="0-project-requirements.html">Project requirements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="1-proposal.html">Deliverable 1: Proposal Report</a></li>
 <li class="toctree-l1 current active"><a class="current reference internal" href="#">Deliverable 2: Final Data Product</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-final_report.html">Final Report Instructions for Data Science Project</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Teamwork reflection (to be used at the end of the semester)</span></p>
 <ul class="nav bd-sidenav">
@@ -353,8 +354,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure-25">1. <strong>Project Structure (25%)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-quality-25">2. <strong>Code Quality (25%)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-environment-25">3. <strong>Reproducible Environment (25%)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-of-mongodb-and-pyspark-25">4. <strong>Application of MongoDB and PySpark (25%)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equal-group-contributions">5. <strong>Equal Group Contributions</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-of-mongodb-and-pyspark-15">4. <strong>Application of MongoDB and PySpark (15%)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-10">5. <strong>Unit tests (10%)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equal-group-contributions">6. <strong>Equal Group Contributions</strong></a></li>
 </ul>
             </nav>
         </div>
@@ -423,15 +425,27 @@ You will be using the same criteria when peer reviewing others’ group projects
 <li><p><strong>Reproduction Instructions</strong>: In the README, provide a step-by-step guide that explains how to re-run the entire analysis from start to finish, including data loading, pre-processing, model training, and results generation. This should ensure that others can replicate your work without any confusion.</p></li>
 </ul>
 </section>
-<section id="application-of-mongodb-and-pyspark-25">
-<h2>4. <strong>Application of MongoDB and PySpark (25%)</strong><a class="headerlink" href="#application-of-mongodb-and-pyspark-25" title="Link to this heading">#</a></h2>
+<section id="application-of-mongodb-and-pyspark-15">
+<h2>4. <strong>Application of MongoDB and PySpark (15%)</strong><a class="headerlink" href="#application-of-mongodb-and-pyspark-15" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>MongoDB Usage</strong>: Your project should showcase meaningful applications of MongoDB’s query language. At a minimum, MongoDB should be used for data pre-processing and cleaning. Merely importing data from MongoDB into Python is insufficient. You must demonstrate how you applied MongoDB queries (e.g., <code class="docutils literal notranslate"><span class="pre">$project</span></code>, <code class="docutils literal notranslate"><span class="pre">$match</span></code>, <code class="docutils literal notranslate"><span class="pre">$group</span></code>) to transform or analyze the data as part of your workflow.</p></li>
 <li><p><strong>PySpark Usage</strong>: Similarly, your project must integrate PySpark for data pre-processing, transformation, or feature engineering. Demonstrating the ability to manipulate large datasets using PySpark is crucial.</p></li>
 </ul>
 </section>
+<section id="unit-tests-10">
+<h2>5. <strong>Unit tests (10%)</strong><a class="headerlink" href="#unit-tests-10" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>For each Python script used in your project (e.g., data preprocessing, model training, or evaluation), you should provide a corresponding unit test file. For instance, if you have a script <code class="docutils literal notranslate"><span class="pre">data_preprocessing.py</span></code>, there should be a test script named <code class="docutils literal notranslate"><span class="pre">test_data_preprocessing.py</span></code></p></li>
+<li><p>Test Coverage: Aim for comprehensive test coverage of your scripts. For each script, you should write tests that:</p>
+<ul>
+<li><p><strong>Test Functionality</strong>: Validate that the functions in your script perform their intended tasks correctly. For example, if you have a function to clean missing values in your dataset, write a test that checks that missing values are properly handled.</p></li>
+<li><p><strong>Test Edge Cases</strong>: Ensure that your tests cover edge cases and potential failure points. For example, test how your code handles an empty dataset, incorrect input formats, or unexpected data types.</p></li>
+</ul>
+</li>
+</ul>
+</section>
 <section id="equal-group-contributions">
-<h2>5. <strong>Equal Group Contributions</strong><a class="headerlink" href="#equal-group-contributions" title="Link to this heading">#</a></h2>
+<h2>6. <strong>Equal Group Contributions</strong><a class="headerlink" href="#equal-group-contributions" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Commit History and Contributions</strong>: Your individual contribution to the project will be assessed based on your Github commit history and the amount of code you contributed. Active participation throughout the project is essential, and your grade will be proportional to your level of contribution.</p>
 <ul>
@@ -483,11 +497,11 @@ You will be using the same criteria when peer reviewing others’ group projects
       </div>
     </a>
     <a class="right-next"
-       href="3-team-work-reflection.html"
+       href="4-final_report.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Deliverable 3: Team Work Reflection</p>
+        <p class="prev-next-title">Final Report Instructions for Data Science Project</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -510,8 +524,9 @@ You will be using the same criteria when peer reviewing others’ group projects
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-structure-25">1. <strong>Project Structure (25%)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-quality-25">2. <strong>Code Quality (25%)</strong></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reproducible-environment-25">3. <strong>Reproducible Environment (25%)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-of-mongodb-and-pyspark-25">4. <strong>Application of MongoDB and PySpark (25%)</strong></a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equal-group-contributions">5. <strong>Equal Group Contributions</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#application-of-mongodb-and-pyspark-15">4. <strong>Application of MongoDB and PySpark (15%)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unit-tests-10">5. <strong>Unit tests (10%)</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#equal-group-contributions">6. <strong>Equal Group Contributions</strong></a></li>
 </ul>
   </nav></div>
 
