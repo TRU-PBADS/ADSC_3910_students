@@ -53,21 +53,21 @@ Office hour: Thu 11:30 AM-12:30 PM at OM 1232. Please book your timeslot [here](
 |       11 | Wed      | Nov 13 | Lecture: How to deliver a technical presentation  |
 |       12 | Mon      | Nov 18 | Final presentation                                |
 |       12 | Wed      | Nov 20 | Final presentation                                |
-|       13 | Mon      | Nov 25 | Teamwork time on final report                     |
-|       13 | Wed      | Dec 01 | Final submission                                  |
+|       13 | Mon      | Nov 25 | Teamwork time on final data product               |
+|       13 | Wed      | Nov 27 | Teamwork time on final data product               |
 
 ## Assessment overview
 
-| Assessment component    | Weight |
-|-------------------------|--------|
-| Teamwork contract       |     5% |
-| Milestone 1: Proposal   |    15% |
-| Peer review proposal    (completed individually)|     5% |
-| Milestone 2: Draft repo |    20% |
-| Peer review github repo (completed individually)|     5% |
-| Final report (completed individually)            |    25% |
-| Final data product      |    20% |
-| Teamwork reflection     |     5% |
+| Assessment component    | Weight | Deadline |
+|-------------------------|--------|---------|
+| Teamwork contract       |     5% |Sep 09, 2024, 11:59 PM|
+| Milestone 1: Proposal   |    15% |Sep 28, 2024, 11:59 PM|
+| Peer review proposal    (completed individually)|     5% |Oct 01, 2024, 11:59 PM|
+| Milestone 2: Draft repo |    20% |Oct 30, 2024, 11:59 PM|
+| Peer review github repo (completed individually)|     5% |Nov 06, 2024, 11:59 PM|
+| Final data product      |    20% |Nov 30, 2024 11:59 PM|
+| Final report (completed individually)            |    25% |Dec 01, 2024 11:59 PM|
+| Teamwork reflection     |     5% |Dec 01, 2024 11:59 PM|
 
 
 ## Attendance, late assignments, academic concessions, academic accomodation
